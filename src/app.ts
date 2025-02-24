@@ -1,10 +1,10 @@
-import * as express from 'express';
+import express from 'express';
 import receiptRoutes from './routes/receipts';
 
-const app = express.default();
+const app = express();
 
 // Middleware
-app.use(express.default.json());
+app.use(express.json());
 
 // Routes
 app.use('/receipts', receiptRoutes);

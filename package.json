@@ -6,7 +6,7 @@
   "author": "nick <49458459+ndonfris@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "node dist/src/index.js",
     "dev": "ts-node-dev --respawn src/index.ts",
     "build": "tsc",
     "watch": "tsc --watch",

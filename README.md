@@ -7,11 +7,66 @@ Provide any instructions required to run your application.
 
 Data does not need to persist when your application stops. It is sufficient to store information in memory. There are too many different database solutions, we will not be installing a database on our system when testing your application.
 
-## Simple testing
+## Installation
+
+```sh
+yarn install
+yarn build
+```
+
+## Running Locally
+
+You can run the server locally using the following command:
+
+```sh
+yarn build && yarn start
+```
+
+The server can also be run in development mode using the following command:
+
+```sh
+yarn dev # does not require compilation
+```
+
+## Testing
+
+### Node jest testing
+
+```sh
+yarn test          # run tests
+yarn test:watch    # watch mode
+yarn test:coverage # view coverage report
+```
+
+### Shell script for testing
+
+Use the curl script provided to test the API. The script will test the API and
+verify the results. The script will output the results of the tests.
 
 ```sh
 ./curl_test.sh
 ```
+
+### Containerized testing
+
+Using docker directly
+
+```sh
+# Build the image
+docker build -t receipt-processor .
+
+# Run the container
+docker run -p 3000:3000 receipt-processor
+```
+
+Using docker-compose
+
+```sh
+docker compose up -d
+```
+
+___
+
 
 ## Language Selection
 

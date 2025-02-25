@@ -1,7 +1,6 @@
 # Receipt Processor
 
-Build a webservice that fulfils the documented API. The API is described below. A formal definition is provided 
-in the [api.yml](./api.yml) file. We will use the described API to test your solution.
+Build a webservice that fulfils the documented API. The API is described below. A formal definition is provided  in the [api.yml](./api.yml) file. We will use the described API to test your solution.
 
 Provide any instructions required to run your application.
 
@@ -9,9 +8,12 @@ Data does not need to persist when your application stops. It is sufficient to s
 
 ## Installation
 
+This project was built using [Node.js](https://nodejs.org/en/download) and [Typescript](https://www.typescriptlang.org/download/),.
+
+You can install the project, by cloning then using the following command:
+
 ```sh
-yarn install
-yarn build
+npm install
 ```
 
 ## Running Locally
@@ -19,13 +21,13 @@ yarn build
 You can run the server locally using the following command:
 
 ```sh
-yarn build && yarn start
+npm run build && npm run start
 ```
 
 The server can also be run in development mode using the following command:
 
 ```sh
-yarn dev # does not require compilation
+npm run dev # does not require compilation 
 ```
 
 ## Testing
@@ -33,19 +35,39 @@ yarn dev # does not require compilation
 ### Node jest testing
 
 ```sh
-yarn test          # run tests
-yarn test:watch    # watch mode
-yarn test:coverage # view coverage report
+npm run test            # run tests                
+npm run test:watch      # watch mode               
+npm run test:coverage   # view coverage report     
 ```
 
 ### Shell script for testing
 
-Use the curl script provided to test the API. The script will test the API and
-verify the results. The script will output the results of the tests.
+If you want to test the server in a bash environment, you can use the 2 following commands:
 
 ```sh
-./curl_test.sh
+# Process receipt and store the ID
+RECEIPT_ID=$(curl -s -X POST "http://localhost:3000/receipts/process" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "retailer": "Target",
+    "purchaseDate": "2022-01-01",
+    "purchaseTime": "13:01",
+    "items": [
+      {"shortDescription": "Mountain Dew 12PK", "price": "6.49"},
+      {"shortDescription": "Emils Cheese Pizza", "price": "12.25"},
+      {"shortDescription": "Knorr Creamy Chicken", "price": "1.26"},
+      {"shortDescription": "Doritos Nacho Cheese", "price": "3.35"},
+      {"shortDescription": "   Klarbrunn 12-PK 12 FL OZ  ", "price": "12.00"}
+    ],
+    "total": "35.35"
+  }' | jq -r '.id')
+
+# Get points using the ID from the previous request
+curl -s "http://localhost:3000/receipts/$RECEIPT_ID/points" | jq
 ```
+
+> [!NOTE]
+> This assumes you have [jq](https://stedolan.github.io/jq/download/), and [curl](https://curl.se/download.html) installed on your system.
 
 ### Containerized testing
 
@@ -67,6 +89,7 @@ docker compose up -d
 
 ___
 
+## Original README content below
 
 ## Language Selection
 

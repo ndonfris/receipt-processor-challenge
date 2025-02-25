@@ -12,7 +12,9 @@
     "watch": "tsc --watch",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "clean": "rm -rf dist coverage",
+    "clean:all": "rm -rf dist coverage node_modules"
   },
   "dependencies": {
     "express": "^4.21.2",

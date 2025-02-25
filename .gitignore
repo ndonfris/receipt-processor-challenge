@@ -10,6 +10,11 @@ dist/
 # Environment variables
 .env
 
+# skip lock files
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
 # Logs
 *.log
 yarn-debug.log*
